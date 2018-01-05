@@ -2,7 +2,7 @@ package com.epam.gomel;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
-import org.junit.gen5.api.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 
