@@ -58,6 +58,7 @@ junitPlatform {
 }
 
 dependencies {
+    testCompileOnly("org.apiguardian:apiguardian-api:1.0.0")
     compile("org.junit:junit5-engine:${junit5Version}")
    // compile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
     compile("io.rest-assured:json-path:${restAssuredVersion}")
