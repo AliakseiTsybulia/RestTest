@@ -1,0 +1,73 @@
+ext.junit4Version        = '4.12'
+ext.junit5Version        = '5.0.0-ALPHA'
+ext.javaHamcrestVersion  = '2.0.0.0'
+ext.junitJupiterVersion  = '5.0.2'
+ext.log4jVersion         = '2.9.0'
+ext.restAssuredVersion   = '3.0.2'
+ext.junitPlatformVersion = '1.0.2'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+group = 'com.epam.gomel'
+version = '1.0-SNAPSHOT'
+
+description = """"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.2'
+    }
+}
+
+repositories {
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+
+junitPlatform {
+    // platformVersion '1.0.2'
+    filters {
+        engines {
+            // include 'junit-jupiter', 'junit-vintage'
+            // exclude 'custom-engine'
+        }
+        tags {
+            // include 'RestTest'
+            // exclude 'SoapTest'
+        }
+        // includeClassNamePattern '.*Test'
+    }
+    selectors {
+        aClass 'com.epam.gomel.RestTest'
+    }
+    // configurationParameter 'junit.jupiter.conditions.deactivate', '*'
+    // enableStandardTestTask true
+    // reportsDir file('build/test-results/junit-platform') // this is the default
+    logManager 'org.apache.logging.log4j.jul.LogManager'
+}
+
+dependencies {
+    compile("org.junit:junit5-engine:${junit5Version}")
+   // compile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+    compile("io.rest-assured:json-path:${restAssuredVersion}")
+    compile("io.rest-assured:json-schema-validator:${restAssuredVersion}")
+    compile("io.rest-assured:xml-path:${restAssuredVersion}")
+    compile("org.hamcrest:java-hamcrest:${javaHamcrestVersion}")
+    testCompile("io.rest-assured:rest-assured:${restAssuredVersion}")
+    testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+    testRuntime("org.apache.logging.log4j:log4j-core:${log4jVersion}")
+    testRuntime("org.apache.logging.log4j:log4j-jul:${log4jVersion}")
+   // testRuntime("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
+}
