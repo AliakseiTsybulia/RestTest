@@ -1,10 +1,9 @@
 ext.junit4Version        = '4.12'
 ext.junit5Version        = '5.0.0-ALPHA'
-ext.javaHamcrestVersion  = '2.0.0.0'
 ext.junitJupiterVersion  = '5.0.2'
-ext.log4jVersion         = '2.9.0'
 ext.restAssuredVersion   = '3.0.2'
 ext.junitPlatformVersion = '1.0.2'
+ext.log4jVersion         = '2.9.0'
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -43,8 +42,8 @@ junitPlatform {
             // exclude 'custom-engine'
         }
         tags {
-            // include 'RestTest'
-            // exclude 'SoapTest'
+             include 'RestTest'
+            // exclude 'RestTest'
         }
         // includeClassNamePattern '.*Test'
     }
@@ -60,15 +59,15 @@ junitPlatform {
 dependencies {
     testCompileOnly("org.apiguardian:apiguardian-api:1.0.0")
     compile("org.junit:junit5-engine:${junit5Version}")
-   // compile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
     compile("io.rest-assured:json-path:${restAssuredVersion}")
     compile("io.rest-assured:json-schema-validator:${restAssuredVersion}")
     compile("io.rest-assured:xml-path:${restAssuredVersion}")
-    compile("org.hamcrest:java-hamcrest:${javaHamcrestVersion}")
+    compile("org.slf4j:slf4j-api:1.7.5")
+    compile("org.slf4j:slf4j-log4j12:1.7.5")
     testCompile("io.rest-assured:rest-assured:${restAssuredVersion}")
+    testCompile("com.jayway.jsonpath:json-path:2.3.0")
     testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
     testRuntime("org.apache.logging.log4j:log4j-core:${log4jVersion}")
     testRuntime("org.apache.logging.log4j:log4j-jul:${log4jVersion}")
-   // testRuntime("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
 }
