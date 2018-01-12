@@ -1,7 +1,5 @@
-ext.junit4Version        = '4.12'
-ext.junit5Version        = '5.0.0-ALPHA'
 ext.junitJupiterVersion  = '5.0.2'
-ext.restAssuredVersion   = '3.0.2'
+ext.restAssuredVersion   = '3.0.6'
 ext.junitPlatformVersion = '1.0.2'
 ext.log4jVersion         = '2.9.0'
 
@@ -57,17 +55,17 @@ junitPlatform {
 }
 
 dependencies {
-    testCompileOnly("org.apiguardian:apiguardian-api:1.0.0")
-    compile("org.junit:junit5-engine:${junit5Version}")
-    compile("io.rest-assured:json-path:${restAssuredVersion}")
-    compile("io.rest-assured:json-schema-validator:${restAssuredVersion}")
-    compile("io.rest-assured:xml-path:${restAssuredVersion}")
-    compile("org.slf4j:slf4j-api:1.7.5")
-    compile("org.slf4j:slf4j-log4j12:1.7.5")
-    testCompile("io.rest-assured:rest-assured:${restAssuredVersion}")
-    testCompile("com.jayway.jsonpath:json-path:2.3.0")
-    testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
-    testRuntime("org.apache.logging.log4j:log4j-core:${log4jVersion}")
-    testRuntime("org.apache.logging.log4j:log4j-jul:${log4jVersion}")
+    compile(
+            "org.apiguardian:apiguardian-api:1.0.0",
+            "io.rest-assured:json-schema-validator:${restAssuredVersion}",
+            "org.slf4j:slf4j-api:1.7.5",
+            "org.slf4j:slf4j-log4j12:1.7.5",
+            "io.rest-assured:rest-assured:${restAssuredVersion}",
+            "com.jayway.jsonpath:json-path:2.3.0",
+            "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}",
+            "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}",
+            "org.apache.logging.log4j:log4j-core:${log4jVersion}",
+            "org.apache.logging.log4j:log4j-jul:${log4jVersion}",
+            "com.github.fge:json-schema-core:1.2.5"
+    )
 }
