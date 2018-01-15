@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Tag;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 
 import static com.jayway.jsonpath.Criteria.where;
@@ -228,5 +229,19 @@ class RestTest {
                 read("$.[*].postId");
 
         assertTrue(postIds.containsAll(commentsPostIds));
+    }
+
+    @Test
+    @DisplayName("Posts connections test")
+    void connection3Test() {
+        ReadContext postsContext = JsonPath.parse(get(POSTS_URI).asString());
+        List<Integer> posts = postsContext.read("$.[*]");
+        int randomPost = (new Random().nextInt(posts.size()));
+        int postId = postsContext.read(String.format("$.[%d].id", randomPost-1));
+        List<String> commentsEmails = JsonPath.parse(get(COMMENTS_URI).asString()).read(String.format(
+                "$.[?(@.postId == %d)].email", postId));
+        List<String> usersEmails = JsonPath.parse(get(USERS_URI).asString()).read("$.[*].email");
+
+        assertTrue(usersEmails.containsAll(commentsEmails));
     }
 }
